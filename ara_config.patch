@@ -1,0 +1,31 @@
+diff --git a/config/configs/common/config_system.csv b/config/configs/common/config_system.csv
+index 9b1ba94..986bc8c 100644
+--- a/config/configs/common/config_system.csv
++++ b/config/configs/common/config_system.csv
+@@ -1,5 +1,5 @@
+ Property,Value
+-CORE_SELECTOR,CORE_CV32E40P
++CORE_SELECTOR,CORE_CV64A6_ARA
+ VIO_RESETN_DEFAULT,1
+-XLEN,32
++XLEN,64
+ PHYSICAL_ADDR_WIDTH,32
+\ No newline at end of file
+diff --git a/config/configs/hpc/config_main_bus.csv b/config/configs/hpc/config_main_bus.csv
+index 687efa9..1648474 100644
+--- a/config/configs/hpc/config_main_bus.csv
++++ b/config/configs/hpc/config_main_bus.csv
+@@ -4,8 +4,8 @@ ID_WIDTH,4
+ NUM_SI,6
+ NUM_MI,8
+ MASTER_NAMES,SYS_MASTER RV_SOCKET_DATA RV_SOCKET_INSTR DBG_MASTER CDMA HBUS
+-RANGE_NAMES,BRAM DM_mem PBUS CDMA HLS_CONTROL DDR4CH1 HBUS PLIC
+-MAIN_CLOCK_DOMAIN,100
+-RANGE_CLOCK_DOMAINS,100 100 250 100 300 300 300 100
+-RANGE_BASE_ADDR,0x0 0x10000 0x20000 0x30000 0x40000 0x50000 0x80000 0x4000000
+-RANGE_ADDR_WIDTH,16 16 16 16 16 16 16 26
++MAIN_CLOCK_DOMAIN,50
++RANGE_NAMES,        BRAM   DM_mem     PBUS     CDMA  HLS_CONTROL  DDR4CH1     HBUS       PLIC
++RANGE_CLOCK_DOMAINS,  50       50      250       50          300      300      300         50
++RANGE_BASE_ADDR,     0x0  0x10000  0x20000  0x30000      0x40000  0x50000  0x80000  0x4000000
++RANGE_ADDR_WIDTH,     16       16       16      16            16       16       16         26
