@@ -29,6 +29,7 @@ void init_dataset();
 #define MSTATUS_FS (0x000006000U)
 #define MSTATUS_XS (0x000018000U)
 #define MSTATUS_VS (0x000000600U)
+#include "uninasoc.h"
 // Define Matrix dimensions:
 // o = i ° f, with i=[MxN], f=[FxF], o=[MxN]
 // The filter is a square matrix, and F is odd
@@ -72,7 +73,7 @@ static inline uint64_t read_minstret(void) {
    return value;
 }
 int main() {
-  uninasoc_init()
+  uninasoc_init();
   printf("\n");
   printf("=============\n");
   printf("=  ICONV2D  =\n");
