@@ -62,22 +62,20 @@ int main() {
   printf("\n");
 
   
-  #ifdef SPIKEGEM
   uint64_t start_minstret = read_minstret();
-  #endif 
+
   start_timer();
   sspgemm_32(M, N, rows, cols, VALUES, col_idx, B, cols_b, C);
   stop_timer();
-  #ifdef SPIKEGEM
+
   uint64_t end_minstret = read_minstret();
   uint64_t delta_minstret = end_minstret - start_minstret;
-  #endif
+
   // Metrics
   int64_t runtime = get_timer();
-    
-  #ifdef SPIKEGEM
+
   printf("Instructions retired (CSR minstret): %lu\n", delta_minstret);
-  #endif
+
   printf("The execution took %d cycles.\n", runtime);
 
 
