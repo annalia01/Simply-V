@@ -1,4 +1,3 @@
-
 // Copyright 2020 ETH Zurich and University of Bologna.
 //
 // SPDX-License-Identifier: Apache-2.0
@@ -37,7 +36,7 @@
 // Check the vector results against golden vectors
 #define CHECK 0
 
-inline int64_t read_minstret(void) {
+static inline int64_t read_minstret(void) {
     int64_t value;
     asm volatile ("csrr %0, instret"
                   : "=r"(value));
@@ -71,21 +70,21 @@ int main() {
   for (uint64_t avl = 8; avl <= (vsize >> 2); avl *= 8) {
     // Dotp
     printf("Calulating 32b dotp with vectors with length = %lu\n", avl);
-    #ifdef SPIKEGEM
+
     int64_t start_minstret = read_minstret();
-    #endif
+  
     start_timer();
     res32_v = dotp_v32b(v32a, v32b, avl);
     stop_timer();
-    #ifdef SPIKEGEM
+
     int64_t end_minstret = read_minstret();
     uint64_t delta_minstret = end_minstret - start_minstret;
-    #endif
+
     runtime_v = get_timer();
     printf("Vector runtime: %ld\n", runtime_v);
-    #ifdef SPIKEGEM
+
     printf("Instructions retired (CSR minstret): %lu\n", delta_minstret);
-    #endif
+
 
     if (SCALAR) {
       start_timer();
