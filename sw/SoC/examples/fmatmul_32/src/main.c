@@ -70,7 +70,7 @@ inline int64_t read_minstret(void) {
 
 
 int main() {
-  uninasoc_init()
+  uninasoc_init();
   printf("\n");
   printf("=============\n");
   printf("=  FMATMUL  =\n");
