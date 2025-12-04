@@ -28,6 +28,7 @@
 #include "uninasoc.h"
 // Define Matrix dimensions:
 // C = AB with A=[MxN], B=[NxP], C=[MxP]
+#define NR_LANES 2
 #define MSTATUS_FS (0x000006000U)
 #define MSTATUS_XS (0x000018000U)
 #define MSTATUS_VS (0x000000600U)
