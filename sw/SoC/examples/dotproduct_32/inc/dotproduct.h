@@ -22,7 +22,6 @@
 #include <stdint.h>
 #include <string.h>
 
-#include <riscv_vector.h>
 
 int32_t dotp_v32b(int32_t *a, int32_t *b, uint64_t avl);
 
