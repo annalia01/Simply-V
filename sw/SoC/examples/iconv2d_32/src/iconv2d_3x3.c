@@ -1,4 +1,4 @@
-#include "iconv2d_32.h"
+#include "iconv2d.h"
 #include <stddef.h>
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
