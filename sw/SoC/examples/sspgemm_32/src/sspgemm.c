@@ -18,11 +18,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
-#ifdef SPIKEGEM
-#include <stdio.h>
-#else 
-#include "printf.h"
-#endif
+#include "uninasoc.h"
 
 
 void sspgemm_32(int32_t M, int32_t N,
@@ -74,6 +70,7 @@ void sspgemm_32(int32_t M, int32_t N,
 int sspgemm_verify_matrix(int32_t M, int32_t N, int32_t rows, int32_t cols, float *VALUES, int32_t *col_idx, float *B, int32_t cols_b, float *OUT) 
 {
     int32_t nnzpr = (cols / M) * N; 
+    uninasoc_init();
     for (int32_t i = 0; i < rows; i++) {
 
         for (int32_t k = 0; k < cols_b; k++) {
