@@ -28,6 +28,7 @@
 #define MSTATUS_FS (0x000006000U)
 #define MSTATUS_XS (0x000018000U)
 #define MSTATUS_VS (0x000000600U)
+#define NR_LANES 2
 #include "uninasoc.h"
 
 // Run also the scalar benchmark
