@@ -19,7 +19,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "iconv2d_32.h"
+#include "iconv2d.h"
 #include "runtime.h"
 
 #include "util.h"
@@ -84,9 +84,9 @@ int main() {
   asm volatile (" csrs    mstatus, t0" );
   // Call the main kernel, and measure cycles
   init_dataset();
-  #ifdef SPIKEGEM
+
   uint64_t start_minstret = read_minstret();
-  #endif
+  
   start_timer();
     iconv2d_3x3(o, i, f, M, N, F);
   stop_timer();
