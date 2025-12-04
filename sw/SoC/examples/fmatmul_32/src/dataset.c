@@ -1,9 +1,9 @@
 
 #include <stdint.h>
 #include "runtime.h"
-#ifdef SPIKEGEM
-#define NR_LANES 8
-#endif
+
+#define NR_LANES 2
+
 
 uint64_t M = 32;
 uint64_t N = 32;
