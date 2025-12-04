@@ -61,7 +61,7 @@ int verify_matrix(float *result, float *gold, size_t R, size_t C,
 #include <stdint.h>
 
 
-inline int64_t read_minstret(void) {
+static inline int64_t read_minstret(void) {
     int64_t value;
     asm volatile ("csrr %0, instret"
                   : "=r"(value));
@@ -90,9 +90,9 @@ asm volatile (" csrs    mstatus, t0" );
     printf("\n");
 
     printf("Calculating fmatmul...\n");
-#ifdef SPIKEGEM
+
 int64_t start_minstret = read_minstret();
-#endif
+
 
 // Esegui il kernel
 start_timer();
@@ -100,10 +100,10 @@ fmatmul(c, a, b, s, s, s);
 stop_timer();
 
 // Leggi i CSR dopo l’esecuzione
-#ifdef SPIKEGEM
+
 int64_t end_minstret = read_minstret();
 uint64_t delta_minstret = end_minstret - start_minstret;
-#endif
+
 
 
 // Metriche preesistenti
@@ -113,9 +113,9 @@ float utilization = 100 * performance / (2.0 * NR_LANES);
 
 // Stampa risultati
 printf("The execution took %ld cycles (timer).\n", runtime);
-#ifdef SPIKEGEM
+
 printf("Instructions retired (CSR minstret): %lu\n", delta_minstret);
-#endif
+
 printf("The performance is %f FLOP/cycle (%f%% utilization).\n",
        performance, utilization);
 
