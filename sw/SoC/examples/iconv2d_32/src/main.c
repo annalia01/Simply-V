@@ -90,19 +90,19 @@ int main() {
   start_timer();
     iconv2d_3x3(o, i, f, M, N, F);
   stop_timer();
-  #ifdef SPIKEGEM
+
   uint64_t end_minstret = read_minstret();
   uint64_t delta_minstret = end_minstret - start_minstret;
-  #endif
+
   // Performance metrics
   int64_t runtime = get_timer();
   float performance = 2.0 * F * F * M * N / runtime;
   float utilization = 100 * performance / (2.0 * NR_LANES);
 
   printf("The execution took %d cycles.\n", runtime);
-  #ifdef SPIKEGEM
+ 
   printf("Instructions retired (CSR minstret): %lu\n", delta_minstret);
-  #endif
+ 
   printf("The performance is %f OP/cycle (%f%% utilization).\n", performance,
          utilization);
 print_matrix(o, M, N);
