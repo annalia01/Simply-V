@@ -28,6 +28,9 @@
 #include "uninasoc.h"
 // Define Matrix dimensions:
 // C = AB with A=[MxN], B=[NxP], C=[MxP]
+#define MSTATUS_FS (0x000006000U)
+#define MSTATUS_XS (0x000018000U)
+#define MSTATUS_VS (0x000000600U)
 extern uint64_t M;
 extern uint64_t N;
 extern uint64_t P;
@@ -66,6 +69,7 @@ inline int64_t read_minstret(void) {
 
 
 int main() {
+  uninasoc_init()
   printf("\n");
   printf("=============\n");
   printf("=  FMATMUL  =\n");
@@ -73,7 +77,8 @@ int main() {
   printf("\n");
   printf("\n");
 
-
+asm volatile (" li      t0, %0     " :: "i"(MSTATUS_FS | MSTATUS_XS | MSTATUS_VS));
+asm volatile (" csrs    mstatus, t0" );
   for (uint64_t s = 4; s <= M; s *= 2) {
 
     printf("\n");
