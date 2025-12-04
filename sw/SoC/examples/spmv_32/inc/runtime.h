@@ -14,7 +14,7 @@ extern int64_t timer;
 extern uint64_t hw_cnt_en_reg;
 
 // Return the current value of the cycle counter
-inline int64_t get_cycle_count() {
+static inline int64_t get_cycle_count() {
   int64_t cycle_count;
   // The fence is needed to be sure that Ara is idle, and it is not performing
   // the last vector stores when we read mcycle with stop_timer()
@@ -32,11 +32,11 @@ inline int64_t get_cycle_count() {
 #define HW_CNT_READY hw_cnt_en_reg = 1;
 #define HW_CNT_NOT_READY hw_cnt_en_reg = 0;
 // Start and stop the counter
-inline void start_timer() { timer = -get_cycle_count(); }
-inline void stop_timer() { timer += get_cycle_count(); }
+static inline void start_timer() { timer = -get_cycle_count(); }
+static inline void stop_timer() { timer += get_cycle_count(); }
 
 // Get the value of the timer
-inline int64_t get_timer() { return timer; }
+static inline int64_t get_timer() { return timer; }
 #else
 #define HW_CNT_READY ;
 #define HW_CNT_NOT_READY ;
