@@ -77,25 +77,24 @@ int main() {
   printf("\n");
 
   printf("calculating ... \n");
-  #ifdef SPIKEGEM
+
   uint64_t start_minstret = read_minstret();
-  #endif
+
   start_timer();
   spmv_csr_idx32(R, CSR_PROW, CSR_INDEX, CSR_DATA, CSR_IN_VECTOR,
                  CSR_OUT_VECTOR);
   stop_timer();
-  #ifdef SPIKEGEM
+
   uint64_t end_minstret = read_minstret();
   uint64_t delta_minstret = end_minstret - start_minstret;
-  #endif
+
   // Metrics
   int64_t runtime = get_timer();
   float performance = 2.0 * NZ / runtime;
   float utilization = 100 * performance / (2.0 * NR_LANES);
 
-  #ifdef SPIKEGEM
   printf("Instructions retired (CSR minstret): %lu\n", delta_minstret);
-  #endif
+
   printf("The execution took %d cycles.\n", runtime);
   printf("The performance is %f FLOP/cycle (%f%% utilization) at %d lanes.\n",
          performance, utilization, NR_LANES);
